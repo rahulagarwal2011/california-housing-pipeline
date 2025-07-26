@@ -3,3 +3,4 @@ __pycache__/
 *.pkl
 *.joblib
 model/
+.DS_Store

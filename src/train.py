@@ -18,3 +18,4 @@ if not os.path.exists('model'):
 
 
 joblib.dump(model, 'model/california_housing_linear_regression_model.joblib')
+print("Model saved as california_housing_linear_regression_model.joblib")

@@ -3,7 +3,7 @@ name: Quantization , R2 Scores and Model size
 on:
   push:
     branches:
-      - docker_ci
+      - quantization
 
 jobs:
   build_and_test_container:

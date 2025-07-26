@@ -23,5 +23,5 @@ jobs:
           pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run training script
+      - name: Run Quantization script
         run: python src/quantize.py

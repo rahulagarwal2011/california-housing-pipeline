@@ -6,7 +6,7 @@ on:
       - quantization
 
 jobs:
-  build_and_test_container:
+  quantiation_and_score_result:
     runs-on: ubuntu-latest
 
     steps:

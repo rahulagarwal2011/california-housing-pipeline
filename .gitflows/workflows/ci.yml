@@ -1,0 +1,47 @@
+name: Train in Git and Predict in Docker
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build_and_test_container:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run training script
+        run: python train.py
+
+      - name: Build Docker image
+        run: |
+          docker build -t my-image-name .
+
+      - name: Run Docker container with predict.py
+        run: |
+          docker run --rm my-image-name python predict.py
+
+
+      - name: Log in to DockerHub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Push Docker image to DockerHub
+        run: |
+          docker tag my-image-name ${{ secrets.DOCKER_USERNAME }}/my-image-name:latest
+          docker push ${{ secrets.DOCKER_USERNAME }}/my-image-name:latest

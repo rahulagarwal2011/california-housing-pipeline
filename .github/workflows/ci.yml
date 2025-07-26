@@ -3,7 +3,7 @@ name: Train in Git and Predict in Docker
 on:
   push:
     branches:
-      - main
+      - docker_ci
 
 jobs:
   build_and_test_container:
